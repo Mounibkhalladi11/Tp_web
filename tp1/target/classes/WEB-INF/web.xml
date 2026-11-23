@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <filter>
+        <filter-name>LoggingFilter</filter-name>
+        <filter-class>isep.lab1.LoggingFilter</filter-class>
+        <init-param>
+            <param-name>logPrefix</param-name>
+            <param-value>[LOG]</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>isep.lab1.SecurityFilter</filter-class>
+    </filter>
+
+    <!-- L'ordre des mappings = l'ordre d'exécution -->
+    <filter-mapping>
+        <filter-name>LoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/ListItems</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>isep.lab1.listener.ApplicationListener</listener-class>
+    </listener>
+</web-app>
